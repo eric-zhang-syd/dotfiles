@@ -1,0 +1,8 @@
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# Source all zsh configuration files
+for file in $HOME/.zsh/*.zsh; do
+    [[ -f "$file" ]] && source "$file"
+done

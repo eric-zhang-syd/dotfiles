@@ -1,0 +1,40 @@
+[core]
+editor = vim
+excludesfile = ~/.gitignore_global
+
+[user]
+email = matthew.topping@iag.co.nz 
+name = Matthew Topping
+	signingkey = 6C95757B1B0AAC12
+
+[log]
+showSignature = true
+
+[includeIf "gitdir:~/code/src/"]
+  path = ~/.gitconfig_personal
+
+[alias]
+co = checkout
+br = branch
+ci = commit --message
+st = status
+sw = switch
+adog = log --all --decorate --oneline --graph --no-show-signature
+
+[credential]
+	helper = osxkeychain
+
+[advice]
+detachedHead = false
+
+[init]
+defaultBranch = main
+
+[pull]
+	rebase = true
+
+[push]
+default = current
+	autoSetupRemote = true
+[commit]
+	gpgsign = true
