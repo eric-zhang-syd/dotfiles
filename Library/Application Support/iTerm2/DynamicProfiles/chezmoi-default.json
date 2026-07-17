@@ -1,0 +1,18 @@
+{
+  "Profiles": [
+    {
+      "Name": "Chezmoi Default",
+      "Guid": "2B4E3C9A-9E2D-4D7E-8C19-0F8727A4D001",
+      "Normal Font": "MesloLGS NF 14",
+      "Non Ascii Font": "MesloLGS NF 14",
+      "Use Non-ASCII Font": false,
+      "Use Bright Bold": true,
+      "Use Bold Font": true,
+      "Draw Powerline Glyphs": true,
+      "Unlimited Scrollback": true,
+      "Scrollback Lines": 100000,
+      "Custom Command": "No",
+      "Working Directory": "~"
+    }
+  ]
+}

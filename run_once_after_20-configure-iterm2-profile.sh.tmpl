@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Only run on Darwin (macOS)
+{{ if eq .chezmoi.os "darwin" -}}
+
+set -euo pipefail
+
+if [[ ! -d "/Applications/iTerm.app" ]]; then
+    echo "iTerm2 app is not installed; skipping default profile configuration."
+    exit 0
+fi
+
+PROFILE_GUID="2B4E3C9A-9E2D-4D7E-8C19-0F8727A4D001"
+
+defaults write com.googlecode.iterm2 "Default Bookmark Guid" -string "$PROFILE_GUID"
+echo "Configured iTerm2 default profile to Chezmoi Default ($PROFILE_GUID)."
+echo "Restart iTerm2 to apply the new default profile."
+
+{{ end -}}
