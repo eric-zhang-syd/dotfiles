@@ -28,7 +28,20 @@ if [[ -f "$HOME/.Brewfile" ]]; then
     fi
 
     echo "Installing Homebrew packages from $HOME/.Brewfile ..."
-    brew bundle install --file="$HOME/.Brewfile"
+    if ! brew bundle install --file="$HOME/.Brewfile"; then
+        echo "Warning: brew bundle failed, likely due to one or more casks requiring extra permissions."
+        cask_skip_list=$(sed -n 's/^cask "\([^"]*\)".*/\1/p' "$HOME/.Brewfile" | tr '\n' ' ' | sed 's/[[:space:]]*$//')
+
+        if [[ -n "$cask_skip_list" ]]; then
+            echo "Retrying without casks to avoid blocking chezmoi apply..."
+            HOMEBREW_BUNDLE_CASK_SKIP="$cask_skip_list" brew bundle install --file="$HOME/.Brewfile"
+            echo "Non-cask packages installed. Please install casks manually if needed."
+            echo "Example: brew install --cask docker-desktop"
+        else
+            echo "No casks found in Brewfile; keeping original failure."
+            exit 1
+        fi
+    fi
 else
     echo "No Brewfile found at $HOME/.Brewfile; skipping package installation."
 fi
