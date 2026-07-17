@@ -31,14 +31,20 @@ source <(kubectl completion zsh)
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 # gcloud-sdk
-export PATH="$HOME/google-cloud-sdk/bin:$PATH"
-if [ -f '/Users/si309655/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/si309655/google-cloud-sdk/path.zsh.inc'; fi
-if [ -f '/Users/si309655/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/si309655/google-cloud-sdk/completion.zsh.inc'; fi
+#export PATH="$HOME/google-cloud-sdk/bin:$PATH"
+#if [ -f '/Users/si309655/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/si309655/google-cloud-sdk/path.zsh.inc'; fi
+#if [ -f '/Users/si309655/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/si309655/google-cloud-sdk/completion.zsh.inc'; fi
 
-export AWS_CA_BUNDLE=/Users/si309655/Library/iag_ca_cert_chain.pem
-export CURL_CA_BUNDLE=/Users/si309655/Library/iag_ca_cert_chain.pem
-export GIT_SSL_CAINFO=/Users/si309655/Library/iag_ca_cert_chain.pem
-export GRPC_DEFAULT_SSL_ROOTS_FILE_PATH=/Users/si309655/Library/iag_ca_cert_chain.pem
-export NODE_EXTRA_CA_CERTS=/Users/si309655/Library/iag_ca_cert_chain.pem
-export REQUESTS_CA_BUNDLE=/Users/si309655/Library/iag_ca_cert_chain.pem
-export SSL_CERT_FILE=/Users/si309655/Library/iag_ca_cert_chain.pem
+#export AWS_CA_BUNDLE=/Users/si309655/Library/iag_ca_cert_chain.pem
+#export CURL_CA_BUNDLE=/Users/si309655/Library/iag_ca_cert_chain.pem
+#export GIT_SSL_CAINFO=/Users/si309655/Library/iag_ca_cert_chain.pem
+#export GRPC_DEFAULT_SSL_ROOTS_FILE_PATH=/Users/si309655/Library/iag_ca_cert_chain.pem
+#export NODE_EXTRA_CA_CERTS=/Users/si309655/Library/iag_ca_cert_chain.pem
+#export REQUESTS_CA_BUNDLE=/Users/si309655/Library/iag_ca_cert_chain.pem
+
+
+export ANTHROPIC_API_KEY="ABCDEFG"
+export PATH="$HOME/.local/bin:$PATH"
+
+# OpenClaw Completion
+[ -f "/Users/laoyong/.openclaw/completions/openclaw.zsh" ] && source "/Users/laoyong/.openclaw/completions/openclaw.zsh"
