@@ -18,6 +18,15 @@ if ! command -v brew >/dev/null 2>&1; then
 fi
 
 if [[ -f "$HOME/.Brewfile" ]]; then
+    # Homebrew may require explicit trust for third-party taps on fresh machines.
+    if brew help trust >/dev/null 2>&1; then
+        while IFS= read -r tap; do
+            [[ -z "$tap" ]] && continue
+            echo "Trusting Homebrew tap: $tap"
+            brew trust "$tap" || echo "Warning: failed to trust tap $tap"
+        done < <(sed -n 's/^tap "\([^"]*\)".*/\1/p' "$HOME/.Brewfile")
+    fi
+
     echo "Installing Homebrew packages from $HOME/.Brewfile ..."
     brew bundle install --file="$HOME/.Brewfile"
 else
