@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Only run on Darwin (macOS)
+{{ if eq .chezmoi.os "darwin" -}}
+
+set -euo pipefail
+
+if ! command -v brew >/dev/null 2>&1; then
+    echo "Homebrew is not available; skipping package installation."
+    exit 0
+fi
+
+# Ensure brew is on PATH for non-interactive shell contexts.
+if [[ $(uname -m) == "arm64" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+if [[ -f "$HOME/.Brewfile" ]]; then
+    echo "Installing Homebrew packages from $HOME/.Brewfile ..."
+    brew bundle --file="$HOME/.Brewfile" --no-lock
+else
+    echo "No Brewfile found at $HOME/.Brewfile; skipping package installation."
+fi
+
+{{ end -}}
